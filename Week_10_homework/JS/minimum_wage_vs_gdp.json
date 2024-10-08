@@ -1,0 +1,150 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "Minimum Wage vs. GDP per Country",
+  "data": {
+    "url": "https://raw.githubusercontent.com/samwzlim/FIT3179/main/week10_homework/data/world-data-2023.csv"
+  },
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Select Continent: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Minimum_wage > 0"},
+    {"filter": "datum.GDP > 0"},
+    {"filter": "datum.Population > 0"},
+    {
+      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
+    },
+    {"calculate": "datum.GDP / 1e12", "as": "GDP trillion"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "GDP trillion",
+      "type": "quantitative",
+      "title": "GDP (in trillions)",
+      "axis": {"tickCount": 5},
+      "scale": {"type": "log"}
+    },
+    "y": {
+      "field": "Minimum_wage",
+      "type": "quantitative",
+      "title": "Minimum Wage (in local currency)",
+      "axis": {"tickCount": 3},
+      "scale": {"type": "log", "domain": [0.01, 20]}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#1f77b4",
+              "#ff7f0e",
+              "#8b4513",
+              "#d62728",
+              "#9467bd",
+              "#8c564b"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {
+            "field": "GDP trillion",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "GDP (in trillions)"
+          },
+          {
+            "field": "Minimum_wage",
+            "type": "quantitative",
+            "title": "Minimum Wage (in local currency)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 12,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'Uganda' || datum['Country'] == 'Italy' || datum['Country'] == 'Malaysia' || datum['Country'] == 'Marshall Islands' ||  datum['Country'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {
+            "field": "GDP trillion",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "GDP (in trillions)"
+          },
+          {
+            "field": "Minimum_wage",
+            "type": "quantitative",
+            "title": "Minimum Wage (in local currency)"
+          }
+        ]
+      }
+    }
+  ]
+}
