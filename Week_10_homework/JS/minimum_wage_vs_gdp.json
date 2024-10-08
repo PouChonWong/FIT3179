@@ -4,7 +4,7 @@
   "height": 600,
   "title": "Minimum Wage vs. GDP per Country",
   "data": {
-    "url": "https://raw.githubusercontent.com/samwzlim/FIT3179/main/week10_homework/data/world-data-2023.csv"
+    "url": "https://raw.githubusercontent.com/PouChonWong/FIT3179/main/Week_10_homework/data/world-data-2023.csv"
   },
   "params": [
     {
