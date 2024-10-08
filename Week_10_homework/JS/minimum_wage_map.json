@@ -5,7 +5,7 @@
   "height": 400,
   "projection": {"type": "equalEarth"},
   "data": {
-    "url": "https://raw.githubusercontent.com/samwzlim/FIT3179/main/week9_homework/js/ne_110m.topojson",
+    "url": "https://raw.githubusercontent.com/PouChonWong/FIT3179/main/Week_9_homework/js/ne_110m.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
   "layer": [
@@ -44,7 +44,7 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/samwzlim/FIT3179/main/week9_homework/data/world-data-2023.csv"
+              "url": "https://raw.githubusercontent.com/PouChonWong/FIT3179/main/Week_9_homework/data/world-data-2023.csv"
             },
             "key": "Country",
             "fields": ["Minimum wage"]
