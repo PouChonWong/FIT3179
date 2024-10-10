@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+    <style>
+        /* Add custom CSS styles for aesthetics */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #e6aaaa;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>World's Suicide Rate Report</h1>
+        <p>Mental Health and Suicide Rates</p>
+    </header>
+
+    <div class="container">
+        <h2>Visualizations</h2>
+        <p>Here are two visualisations that depict key insights from the World's Suicide Rate Report:</p>
+        <div id="Suicide_Rate"></div>
+        <div id="Rate_vs_Income"></div>
+
+        <h2>About the Report</h2>
+        <p>Close to 800 000 people die due to suicide every year, which is one person every 40 seconds. Suicide is a global phenomenon and occurs throughout the lifespan. Effective and evidence-based interventions can be implemented at population, sub-population and individual levels to prevent suicide and suicide attempts. There are indications that for each adult who died by suicide there may have been more than 20 others attempting suicide.</p>
+
+        <h2>Key Findings</h2>
+        <p>Key findings from the report include:</p>
+        <ul>
+            <li>Suicide is a leading cause of death globally, particularly among young people.</li>
+            <li>Suicide happen more in tend to lower GDP per capita.</li>
+            <li>Mental health is significant factors in suicide rate.</li>
+        </ul>
+
+       
+        <a href="https://worldhappiness.report/" target="_blank">Official World Happiness Report</a>
+
+
+    </div>
+
+    <script type="text/javascript">
+        var specVis1 = "js/Suicide_Rate.vg.json";
+        var specVis2 = "js/Rate_vs_Income.vg.json";
+
+        vegaEmbed('#Suicide_Rate', specVis1, { "actions": false });
+
+        vegaEmbed('#Rate_vs_Income', specVis2, { "actions": false }).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+    </script>
+</body>
+
+</html>
